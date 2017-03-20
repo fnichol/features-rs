@@ -8,7 +8,7 @@ repository = "https://github.com/fnichol/features-rs"
 documentation = "https://docs.rs/features"
 keywords = ["feature", "toggle", "flag"]
 categories = ["config", "development-tools"]
-description = """"
+description = """
 A macro to generate runtime feature toggles.
 """
 
