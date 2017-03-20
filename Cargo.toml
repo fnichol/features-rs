@@ -1,7 +1,16 @@
 [package]
 name = "features"
-version = "0.1.0"
+version = "0.8.0"
 authors = ["Fletcher Nichol <fnichol@nichol.ca>"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/fnichol/features-rs"
+documentation = "https://docs.rs/features"
+keywords = ["feature", "toggle", "flag"]
+categories = ["config", "development-tools"]
+description = """"
+A macro to generate runtime feature toggles.
+"""
 
 [dependencies]
 bitflags = "^0.8"

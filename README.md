@@ -1,5 +1,21 @@
 # Features
 
+[![Crate version](https://img.shields.io/crates/v/features.svg)][crate]
+[![Crate downloads](https://img.shields.io/crates/d/features.svg)][crate]
+[![Crate license](https://img.shields.io/crates/l/features.svg)][github]
+[![Documentation](https://img.shields.io/badge/documentation-docs.rs-df3600.svg?style=flat-square)][docs]
+
+[![AppVeyor](https://img.shields.io/appveyor/ci/fnichol/features-rs.svg)][build-windows] <sup>(Windows)</sup>
+[![Travis](https://img.shields.io/travis/fnichol/features-rs.svg)][build-unix] <sup>(Linux and OS X)</sup>
+
+[build-unix]: https://travis-ci.org/fnichol/features-rs
+[build-windows]: https://ci.appveyor.com/project/fnichol/features-rs
+[crate]: https://crates.io/crates/features
+[docs]: https://docs.rs/features
+[github]: https://github.com/fnichol/features-rs
+[lic-apachev2]: https://github.com/fnichol/features-rs/blob/master/LICENSE-APACHE
+[lic-mit]: https://github.com/fnichol/features-rs/blob/master/LICENSE-MIT
+
 ## About
 
 `features` is a small library that implements runtime [feature toggles][fowler_toggles] for
