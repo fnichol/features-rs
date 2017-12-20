@@ -13,4 +13,4 @@ A macro to generate runtime feature toggles.
 """
 
 [dependencies]
-bitflags = "^0.8"
+bitflags = "^1.0"
