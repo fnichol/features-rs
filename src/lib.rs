@@ -101,6 +101,7 @@
 //! [fowler_toggles]: https://martinfowler.com/articles/feature-toggles.html
 //! [cargo_feature]: http://doc.crates.io/manifest.html#the-features-section
 
+#[cfg(test)]
 #[macro_use]
 extern crate bitflags;
 
@@ -206,16 +207,21 @@ macro_rules! features {
         use std::sync::atomic;
 
         bitflags! {
-            pub flags Flags: usize {
-                $($(#[$flag_attr])* const $flag = $value),+
+            pub struct Flags: usize {
+                $(
+                    $(#[$flag_attr])* const $flag = $value;
+                )+
             }
         }
+        $(
+            pub const $flag: Flags = Flags::$flag;
+        )+
 
         static mut FEATURES: atomic::AtomicUsize = atomic::ATOMIC_USIZE_INIT;
 
         #[allow(dead_code)]
         pub fn enable(flag: Flags) {
-            let mut features = unsafe { FEATURES.get_mut() };
+            let features = unsafe { FEATURES.get_mut() };
             let mut flags = Flags::from_bits_truncate(*features);
             flags.insert(flag);
             *features = flags.bits();
@@ -223,7 +229,7 @@ macro_rules! features {
 
         #[allow(dead_code)]
         pub fn disable(flag: Flags) {
-            let mut features = unsafe { FEATURES.get_mut() };
+            let features = unsafe { FEATURES.get_mut() };
             let mut flags = Flags::from_bits_truncate(*features);
             flags.remove(flag);
             *features = flags.bits();
