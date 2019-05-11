@@ -174,7 +174,6 @@ extern crate bitflags;
 ///     }
 /// }
 /// ```
-///
 #[macro_export]
 macro_rules! features {
     (mod $mod_name:ident {
@@ -217,7 +216,7 @@ macro_rules! features {
             pub const $flag: Flags = Flags::$flag;
         )+
 
-        static mut FEATURES: atomic::AtomicUsize = atomic::ATOMIC_USIZE_INIT;
+        static mut FEATURES: atomic::AtomicUsize = atomic::AtomicUsize::new(0);
 
         #[allow(dead_code)]
         pub fn enable(flag: Flags) {
