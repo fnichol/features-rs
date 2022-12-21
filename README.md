@@ -101,7 +101,7 @@ fn main() {
 
 ## Feature Toggle References
 
-Here are some articles and projects which insipred the implementation of `features`:
+Here are some articles and projects which inspired the implementation of `features`:
 
 * [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html) (Martin Fowler's
 blog)
