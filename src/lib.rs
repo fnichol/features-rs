@@ -181,6 +181,7 @@ macro_rules! features {
     }) => {
         #[allow(non_upper_case_globals)]
         mod $mod_name {
+            use $crate::features;
             features! {
                 @_impl mod $mod_name {
                     $($(#[$flag_attr])* const $flag = $value),+
@@ -204,6 +205,7 @@ macro_rules! features {
         $($(#[$flag_attr:meta])* const $flag:ident = $value:expr),+
     }) => {
         use std::sync::atomic;
+        use bitflags::bitflags;
 
         bitflags! {
             pub struct Flags: usize {
