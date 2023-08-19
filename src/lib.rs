@@ -194,6 +194,7 @@ macro_rules! features {
     }) => {
         #[allow(non_upper_case_globals)]
         pub mod $mod_name {
+            use $crate::features;
             features! {
                 @_impl mod $mod_name {
                     $($(#[$flag_attr])* const $flag = $value),+
