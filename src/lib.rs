@@ -216,22 +216,16 @@ macro_rules! features {
             pub const $flag: Flags = Flags::$flag;
         )+
 
-        static mut FEATURES: atomic::AtomicUsize = atomic::AtomicUsize::new(0);
+        static FEATURES: atomic::AtomicUsize = atomic::AtomicUsize::new(0);
 
         #[allow(dead_code)]
         pub fn enable(flag: Flags) {
-            let features = unsafe { FEATURES.get_mut() };
-            let mut flags = Flags::from_bits_truncate(*features);
-            flags.insert(flag);
-            *features = flags.bits();
+            FEATURES.fetch_or(flag.bits(), atomic::Ordering::SeqCst);
         }
 
         #[allow(dead_code)]
         pub fn disable(flag: Flags) {
-            let features = unsafe { FEATURES.get_mut() };
-            let mut flags = Flags::from_bits_truncate(*features);
-            flags.remove(flag);
-            *features = flags.bits();
+            FEATURES.fetch_and(!flag.bits(), atomic::Ordering::SeqCst);
         }
 
         #[allow(dead_code)]
@@ -241,7 +235,7 @@ macro_rules! features {
 
         #[allow(dead_code)]
         pub fn flags() -> Flags {
-            unsafe { Flags::from_bits_truncate(FEATURES.load(atomic::Ordering::Relaxed)) }
+            Flags::from_bits_truncate(FEATURES.load(atomic::Ordering::Relaxed))
         }
     };
 }
